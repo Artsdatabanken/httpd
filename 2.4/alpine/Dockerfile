@@ -141,8 +141,8 @@ RUN set -eux; \
 COPY httpd-foreground /usr/local/bin/
 COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY .htaccess /usr/local/apache2/htdocs/
-ADD run.sh /run.sh
-ADD entrypoint.sh /entrypoint.sh
+COPY run.sh /tmp/run.sh
+COPY entrypoint.sh /tmp/entrypoint.sh
 
 RUN chmod +x /run.sh /entrypoint.sh
 
