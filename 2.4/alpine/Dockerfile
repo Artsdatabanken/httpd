@@ -144,7 +144,7 @@ COPY .htaccess /usr/local/apache2/htdocs/
 COPY run.sh /tmp/run.sh
 COPY entrypoint.sh /tmp/entrypoint.sh
 
-RUN chmod +x /run.sh /entrypoint.sh
+RUN chmod +x /tmp/run.sh /tmp/entrypoint.sh
 
 RUN chown -R www-data:www-data "$HTTPD_PREFIX"
 
