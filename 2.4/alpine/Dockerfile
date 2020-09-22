@@ -141,10 +141,6 @@ RUN set -eux; \
 COPY httpd-foreground /usr/local/bin/
 COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY .htaccess /usr/local/apache2/htdocs/
-COPY run.sh /tmp/run.sh
-COPY entrypoint.sh /tmp/
-
-RUN chmod +x /tmp/run.sh /tmp/
 
 RUN chown -R www-data:www-data "$HTTPD_PREFIX"
 
