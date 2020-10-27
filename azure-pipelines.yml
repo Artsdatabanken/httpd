@@ -1,0 +1,31 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+steps: 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerHub'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerHub'
+    repository: 'httpd'
+    command: 'buildAndPush'
+    Dockerfile: '$(Build.SourcesDirectory)/2.4/alpine/Dockerfile'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerHub'
+    command: 'logout'
