@@ -16,8 +16,8 @@ variables:
 
 steps:
 - script: |
-    docker build -f $(Build.SourcesDirectory)/2.4/alpine/Dockerfile -t $(dockerId)/$(imageName) .
+    docker build -f $(Build.SourcesDirectory)/2.4/alpine/Dockerfile -t httpd:latest .
     docker login -u $(dockerUser) -p $pwd
-    docker push $(dockerId)/$(imageName)
+    docker push artsdatabanken/httpd
   env:
     pwd: $dockerPass
