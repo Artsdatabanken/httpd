@@ -24,7 +24,7 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: 'dockerHub'
-        repository: 'httpd'
+        repository: 'artsdatabanken/httpd'
         command: 'buildAndPush'
         dockerfile: '$(Build.SourcesDirectory)/2.4/alpine/Dockerfile'
         tags: |
