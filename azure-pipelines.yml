@@ -14,10 +14,18 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
 
-steps:
-- script: |
-    docker build -f $(Build.SourcesDirectory)/2.4/alpine/Dockerfile -t httpd:latest .
-    docker login -u $(dockerUser) -p $pwd
-    docker push artsdatabanken/httpd
-  env:
-    pwd: $dockerPass
+steps: 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerHub'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerHub'
+    repository: 'httpd'
+    command: 'buildAndPush'
+    Dockerfile: '$(Build.SourcesDirectory)/2.4/alpine/Dockerfile'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'dockerHub'
+    command: 'logout'
