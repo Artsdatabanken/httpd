@@ -23,9 +23,7 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        containerRegistry: 'dockerHub'
-        repository: 'artsdatabanken/httpd'
-        command: 'buildAndPush'
+        command: build
         dockerfile: '$(Build.SourcesDirectory)/2.4/alpine/Dockerfile'
         tags: |
           $(tag)
